@@ -32,6 +32,7 @@ def isPrimeNumber(number):
 		return 'Please enter a number greater than 1.\n'
 
 	if (number <=3): #catch entries of 2 and 3 before we start checking remainders as 2 and 3 are prime but 2%2 = 0 
+		cache.lrem('primeList', 0, number)
 		cache.lpush('primeList', number)
 		return '{} is a prime number.\n'.format(number)
 		
@@ -45,6 +46,7 @@ def isPrimeNumber(number):
 		#we start from 5 and go up by 6 each iteration, 
 		
 		i = i + 6
+	cache.lrem('primeList', 0, number)
 	cache.lpush('primeList', number)
 	return '{} is a prime number.\n'.format(number)
 
